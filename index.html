@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="theme-color" content="#202020">
+		<link rel="stylesheet" href="index.css">
+		<title>Razion chat</title>
+	</head>
+
+	<body>
+		<div id="login">
+			<form onsubmit="connect(); return false" autocomplete="off">
+				<input type="text" id="nameInput" placeholder="Informe seu nome">
+				<button type="submit" id="connectBt" class="blueBt">Entrar</button>
+			</form>
+		</div>
+
+		<div id="chatContainer">
+			<aside>
+				<ul id="onlineUsersList">
+					
+				</ul>
+			</aside>
+
+			<section>
+				<div id="chat">
+				</div>
+				<div id="msgInputContainer">
+					<textarea type="text" id="messageInput"></textarea>
+					<button id="sendBt" class="blueBt" onclick="sendMessage()">
+						✔
+					</button>
+				</div>
+			</section>
+		</div>
+
+		<script src="index.js"></script>
+	</body>
+
+</html>
