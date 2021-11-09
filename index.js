@@ -4,7 +4,7 @@ function connect() {
 	if (name == '')
 		alert('Digite seu nome.')
 	else {
-		ws = new WebSocket('ws://razion-apis.herokuapp.com/')
+		ws = new WebSocket('wss://razion-apis.herokuapp.com/')
 
 		ws.addEventListener('open', () => {
 
