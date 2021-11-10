@@ -1,10 +1,12 @@
 var ws
+var pingTimer
 function connect() {
 	let name = document.querySelector('#nameInput').value.trim()
 	if (name == '')
 		alert('Digite seu nome.')
 	else {
-		ws = new WebSocket('wss://razion-apis.herokuapp.com/')
+		// ws = new WebSocket('wss://razion-apis.herokuapp.com/')
+		ws = new WebSocket('ws://192.168.100.100:3333/')
 
 		ws.addEventListener('open', () => {
 
@@ -17,6 +19,8 @@ function connect() {
 
 			document.querySelector('#login').style.display = 'none'
 			document.querySelector('#chatContainer').style.display = 'flex'
+
+			resetPingTimer()
 		})
 
 		ws.addEventListener('message', ({data}) => {
@@ -52,7 +56,16 @@ function connect() {
 					chat.appendChild(msg)
 				}
 				chat.scrollTo({left: 0, top: chat.scrollHeight, behavior: 'smooth'})
+				resetPingTimer()
 			}
+		})
+
+		ws.addEventListener('error', (err)=>{
+			console.error('Ocorreu um erro: ',err)
+		})
+
+		ws.addEventListener('close', ()=>{
+			console.log('Sua conexão foi finalizada.')
 		})
 	}
 }
@@ -82,6 +95,18 @@ function sendMessage(e) {
 			}
 		}
 	}
+	resetPingTimer()
+}
+
+function resetPingTimer(){
+	clearTimeout(pingTimer)
+	pingTimer = setTimeout(() => {
+		let sendingData = {
+			type: 'command',
+			command: 'ping'
+		}
+		ws.send(JSON.stringify(sendingData))
+	}, 30000)
 }
 
 function executeCode(data) {
@@ -93,6 +118,10 @@ function executeCode(data) {
 			users.map((user) => {
 				list.innerHTML += `<li>${ user }</li>`
 			})
+			break
+		case('pong'):
+			console.log('ping pong efetuado')
+			resetPingTimer()
 			break
 	}
 }
