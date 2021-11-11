@@ -10,8 +10,7 @@ const urlB64ToUint8Array = (base64String) => {
 }
 
 const saveSubscription = async subscription => {
-	// const response = await fetch('http://192.168.100.100:3333/service-worker/save-subscription', {
-		const response = await fetch('https://razion-apis.herokuapp.com/service-worker/save-subscription', {
+	const response = await fetch('https://razion-apis.herokuapp.com/service-worker/save-subscription', {
 		method: 'post',
 		headers: {
 			'Content-Type': 'application/json'
@@ -83,7 +82,7 @@ self.addEventListener('notificationclick', function (event) {
 			for (var i = 0; i < clientList.length; i++) {
 				var client = clientList[i]
 				console.log(client.url)
-				if (client.url.startsWith('http://127.0.0.1:8080')) {
+				if (client.url.startsWith('https://djalmir.github.io/chat')) {
 					return client.focus()
 				}
 			}
