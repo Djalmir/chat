@@ -5,8 +5,8 @@ function connect() {
 	if (name == '')
 		alert('Digite seu nome.')
 	else {
-		ws = new WebSocket('wss://razion-apis.herokuapp.com/')
-		// ws = new WebSocket('ws://192.168.100.100:3333/')
+		// ws = new WebSocket('wss://razion-apis.herokuapp.com/')
+		ws = new WebSocket('ws://192.168.100.100:3333/')
 
 		ws.addEventListener('open', () => {
 
@@ -41,14 +41,14 @@ function connect() {
 				else {
 					let msg = document.createElement('div')
 					let div = document.createElement('div')
-					if(data.from){
+					if (data.from) {
 						msg.classList.add('friendsMsg')
 						let sup = document.createElement('sup')
 						sup.innerText = data.from
 						div.appendChild(sup)
 					}
 					else
-					msg.classList.add('systemMsg')
+						msg.classList.add('systemMsg')
 					let b = document.createElement('b')
 					b.innerText = data.message
 					div.appendChild(b)
@@ -60,11 +60,11 @@ function connect() {
 			}
 		})
 
-		ws.addEventListener('error', (err)=>{
-			console.error('Ocorreu um erro: ',err)
+		ws.addEventListener('error', (err) => {
+			console.error('Ocorreu um erro: ', err)
 		})
 
-		ws.addEventListener('close', ()=>{
+		ws.addEventListener('close', () => {
 			console.log('Sua conexão foi finalizada.')
 		})
 	}
@@ -98,7 +98,7 @@ function sendMessage(e) {
 	resetPingTimer()
 }
 
-function resetPingTimer(){
+function resetPingTimer() {
 	clearTimeout(pingTimer)
 	pingTimer = setTimeout(() => {
 		let sendingData = {
@@ -106,7 +106,7 @@ function resetPingTimer(){
 			command: 'ping'
 		}
 		ws.send(JSON.stringify(sendingData))
-	}, 30000)
+	}, 5000)
 }
 
 function executeCode(data) {
@@ -119,7 +119,7 @@ function executeCode(data) {
 				list.innerHTML += `<li>${ user }</li>`
 			})
 			break
-		case('pong'):
+		case ('pong'):
 			// console.log('ping pong efetuado')
 			resetPingTimer()
 			break
@@ -136,3 +136,32 @@ window.onkeyup = (e) => {
 		shiftDown = false
 }
 document.querySelector('#messageInput').addEventListener('keydown', sendMessage)
+
+function checkNotificationsAvailability() {
+	if (!('serviceWorker' in navigator)) {
+		throw new Error('No Service Worker support!')
+	}
+	if (!('PushManager' in window)) {
+		throw new Error('No Push API Support!')
+	}
+}
+
+async function registerServiceWorker() {
+	const swRegistration = await navigator.serviceWorker.register('service.js')
+	return swRegistration
+}
+
+async function requestNotificationPermission() {
+	const permission = await window.Notification.requestPermission()
+	if (permission !== 'granted') {
+		throw new Error('Permissão para notificações negada.')
+	}
+}
+
+async function notificationMain() {
+	checkNotificationsAvailability()
+	const swRegistration = await registerServiceWorker()
+	const permission = await requestNotificationPermission()
+}
+
+notificationMain()
