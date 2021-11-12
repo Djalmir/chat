@@ -11,6 +11,7 @@ const urlB64ToUint8Array = (base64String) => {
 
 const saveSubscription = async subscription => {
 	const response = await fetch('https://razion-apis.herokuapp.com/service-worker/save-subscription', {
+		// const response = await fetch('http://192.168.100.100:3333/service-worker/save-subscription', {
 		method: 'post',
 		headers: {
 			'Content-Type': 'application/json'
@@ -47,7 +48,7 @@ self.addEventListener('push', function (event) {
 const showLocalNotification = (title, body, swRegistration) => {
 	const options = {
 		body,
-		vibrate: [300, 100, 400],
+		vibrate: [300, 100, 300, 100, 200, 50, 100, 100, 500],
 		icon: 'https://avatars.githubusercontent.com/u/54116932?v=4',
 		image: 'https://media-exp1.licdn.com/dms/image/C5616AQGDXhHSWXJPAA/profile-displaybackgroundimage-shrink_200_800/0/1579622883491?e=1642032000&v=beta&t=yuQoyTImXzn2ov1AV4b_SVWtcl6jumjIAosvr9OB3g8',
 		actions: [
@@ -83,11 +84,13 @@ self.addEventListener('notificationclick', function (event) {
 				var client = clientList[i]
 				console.log(client.url)
 				if (client.url.startsWith('https://djalmir.github.io/chat')) {
+					// if (client.url.startsWith('http://192.168.100.100:8080')) {
 					return client.focus()
 				}
 			}
 			if (clients.openWindow)
 				return clients.openWindow('https://djalmir.github.io/chat')
+				// return clients.openWindow('http://192.168.100.100:8080')
 		}))
 	}
 })
