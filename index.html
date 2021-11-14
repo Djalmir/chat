@@ -11,19 +11,59 @@
 	</head>
 
 	<body>
+		<div id="errorMsg">
+			<span id="errorMsgText">Erros aqui</span>
+			<button id="closeErrorBtn" onclick="closeErrorMsg()">
+				<svg viewBox="0 0 20 20">
+					<line x1="5" y1="5" x2="15" y2="15" stroke="white" stroke-width="4" stroke-linecap="round" />
+					<line x1="5" y1="15" x2="15" y2="5" stroke="white" stroke-width="4" stroke-linecap="round" />
+				</svg>
+			</button>
+		</div>
+
 		<div id="login">
-			<form onsubmit="connect(); return false" autocomplete="off">
+			<form onsubmit="connect(); return false" autocomplete="off" style="display: flex;align-items: center;justify-content: center; flex-wrap: wrap;gap: 10px;">
 				<input type="text" id="nameInput" placeholder="Informe seu nome">
 				<button type="submit" id="connectBt" class="blueBt">Entrar</button>
 			</form>
 		</div>
 
 		<div id="chatContainer">
-			<aside>
+
+			<header id="header1">
+				<div id="menuBtContainer">
+					<!--:style="{width: showingMenu ? '300px' : '40px'}"-->
+					<button id="menuBt" onclick="showMenu()">
+						<svg id="menuSVG" viewBox="0 0 32 32">
+							<g style="stroke-width:6; stroke-linecap:round;">
+								<!--:style="{stroke: showingMenu ? '#7d7d7d' : '#bdbdbd'}"-->
+								<line x1="3" y1="3" x2="29" y2="3">
+									<animate class="showAnimation" attributeType="XML" attributeName="x1" begin="indefinite" from="3" to="18" dur=".4s" fill="freeze" />
+									<animate class="showAnimation" attributeType="XML" attributeName="y2" begin="indefinite" from="3" to="13" dur=".4s" fill="freeze" />
+									<animate class="hideAnimation" attributeType="XML" attributeName="x1" begin="indefinite" from="10" to="3" dur=".4s" fill="freeze" />
+									<animate class="hideAnimation" attributeType="XML" attributeName="y2" begin="indefinite" from="13" to="3" dur=".4s" fill="freeze" />
+								</line>
+								<line x1="3" y1="13" x2="29" y2="13" />
+								<line x1="3" y1="23" x2="29" y2="23">
+									<animate class="showAnimation" attributeType="XML" attributeName="x1" begin="indefinite" from="3" to="18" dur=".4s" fill="freeze" />
+									<animate class="showAnimation" attributeType="XML" attributeName="y2" begin="indefinite" from="23" to="13" dur=".4s" fill="freeze" />
+									<animate class="hideAnimation" attributeType="XML" attributeName="x1" begin="indefinite" from="10" to="3" dur=".4s" fill="freeze" />
+									<animate class="hideAnimation" attributeType="XML" attributeName="y2" begin="indefinite" from="13" to="23" dur=".4s" fill="freeze" />
+								</line>
+							</g>
+						</svg>
+					</button>
+				</div>
+				<span id="titleSpan">Todos</span>
+			</header>
+
+			<aside id="aside">
 				<ul id="onlineUsersList">
-					
+
 				</ul>
 			</aside>
+
+			<div id="shadow" onclick="showMenu()"></div>
 
 			<section>
 				<div id="chat">

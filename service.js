@@ -27,7 +27,7 @@ self.addEventListener('activate', async () => {
 		const options = {applicationServerKey, userVisibleOnly: true}
 		const subscription = await self.registration.pushManager.subscribe(options)
 		const response = await saveSubscription(subscription)
-		console.log('saveSubscription response: ', response)
+		// console.log('saveSubscription response: ', response)
 	}
 	catch (err) {
 		console.log('Error: ', err)
@@ -35,13 +35,13 @@ self.addEventListener('activate', async () => {
 })
 
 self.addEventListener('push', function (event) {
-	console.log(event.data)
+	// console.log(event.data)
 	if (event.data) {
-		console.log('Push event!!', event.data.text())
+		// console.log('Push event!!', event.data.text())
 		showLocalNotification("Djalmir Miodutzki", event.data.text(), self.registration)
 	}
 	else {
-		console.log('push event, but no data')
+		// console.log('push event, but no data')
 	}
 })
 
@@ -70,7 +70,7 @@ const showLocalNotification = (title, body, swRegistration) => {
 
 self.addEventListener('notificationclick', function (event) {
 
-	console.log('On notification click: ', event)
+	// console.log('On notification click: ', event)
 	// event.notification.close();
 
 	if (event.action > 0) {
@@ -82,7 +82,7 @@ self.addEventListener('notificationclick', function (event) {
 		}).then(function (clientList) {
 			for (var i = 0; i < clientList.length; i++) {
 				var client = clientList[i]
-				console.log(client.url)
+				// console.log(client.url)
 				if (client.url.startsWith('https://djalmir.github.io/chat')) {
 					// if (client.url.startsWith('http://192.168.100.100:8080')) {
 					return client.focus()
