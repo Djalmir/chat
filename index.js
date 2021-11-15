@@ -1,13 +1,20 @@
-// import load from './components/load.js'
 var ws
 var pingTimer
 var activeChat = 'all'
 var friends = []
+var load = document.querySelector('#app-load')
+
+function loginInputKeyPress(e) {
+	if (e.key == 'Enter')
+		connect()
+}
+
 function connect() {
 	let name = document.querySelector('#nameInput').value.trim()
 	if (name == '')
 		showErrorMsg('Digite seu nome.')
 	else {
+		load.setLoading(true)
 		ws = new WebSocket('wss://razion-apis.herokuapp.com/')
 		// ws = new WebSocket('ws://192.168.100.100:3333/')
 
@@ -41,9 +48,11 @@ function connect() {
 
 					ws.send(JSON.stringify(sendingData))
 					resetPingTimer()
+					load.setLoading(false)
 				}
 			}
 			else if (data.type == 'error') {
+				load.setLoading(false)
 				showErrorMsg(data.error)
 			}
 			else if (data.type == 'command')
@@ -101,7 +110,8 @@ function connect() {
 		})
 
 		ws.addEventListener('close', () => {
-			console.log('Sua conexão foi finalizada.')
+			console.error('Sua conexão foi finalizada.')
+			showErrorMsg('Sua conexão foi finalizada.')
 		})
 	}
 }

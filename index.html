@@ -22,10 +22,10 @@
 		</div>
 
 		<div id="login">
-			<form onsubmit="connect(); return false" autocomplete="off" style="display: flex;align-items: center;justify-content: center; flex-wrap: wrap;gap: 10px;">
-				<input type="text" id="nameInput" placeholder="Informe seu nome">
-				<button type="submit" id="connectBt" class="blueBt">Entrar</button>
-			</form>
+			<div id="loginForm" autocomplete="off">
+				<input type="text" id="nameInput" placeholder="Informe seu nome" onkeypress="loginInputKeyPress(event)" autocomplete="off">
+				<button id="connectBt" class="blueBt" onclick="connect()">Entrar</button>
+			</div>
 		</div>
 
 		<div id="chatContainer">
@@ -80,6 +80,9 @@
 			</section>
 		</div>
 
+		<app-load id="app-load"/>
+
+		<script src="./components/load.js"></script>
 		<script src="index.js"></script>
 	</body>
 
