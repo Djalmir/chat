@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 ::-webkit-scrollbar {
 	background-color: #0000008d;
 	width: 4px;
@@ -17,16 +19,14 @@ body {
 	height: 100%;
 	padding: 0;
 	margin: 0;
-	background-color: #303030;
+	background-color: #101010;
 	color: #fff;
-	font-family: monospace;
-	letter-spacing: 2px;
+	font-family: Roboto, sans-serif;
 	-webkit-tap-highlight-color: transparent;
 }
 
 input, button {
-	font-family: monospace;
-	letter-spacing: 2px;
+	font-family: Roboto, sans-serif;
 	font-size: 18px;
 	border: none;
 	outline: none;
@@ -151,7 +151,7 @@ button:active {
 }
 
 aside {
-	background: #303030;
+	background: linear-gradient(315deg, #202020, #101010);
 	/* box-shadow: 5px 0 5px #0000008d; */
 	position: fixed;
 	top: 0;
@@ -159,11 +159,12 @@ aside {
 	width: 90%;
 	max-width: 300px;
 	height: 100%;
-	padding-top: 40px;
+	padding: 43px 0 0;
 	box-sizing: border-box;
 	z-index: 4;
 	transition: .4s;
 	user-select: none;
+	border-right: 1px solid #101010 !important;
 }
 
 #onlineUsersList {
@@ -176,36 +177,43 @@ aside {
 	position: relative;
 	padding: 8px;
 	box-sizing: border-box;
-	background: linear-gradient(to right, #252525, #333333);
-	border: 1px solid transparent;
-	margin: 0 0 2px;
+	background: linear-gradient(to top, #252525, #202020);
+	border: none;
+	margin: 2px 0 ;
 	cursor: pointer;
-	transition: .1s;
+	/* transition: .1s; */
+	opacity: .8;
 }
 
 #onlineUsersList li:hover {
 	/* box-shadow: inset 0 0 5px #0000008d; */
+	opacity: 1;
 }
 
 #onlineUsersList li:active {
 	/* background: #151515; */
-	background: linear-gradient(to right, #151515, #232323)!important;
+	background: linear-gradient(to top, #151515, #232323)!important;
+	transform: scale(.98)
 }
 
 #onlineUsersList li.active {
 	/* background: #202020; */
-	background: linear-gradient(to right, #222222, #181818);
+	background: linear-gradient(to bottom, #181818, #222222);
 	font-weight: bold;
+	opacity: 1;
 	/* border-right: 2px solid #006699; */
 }
 
 #onlineUsersList li.active::before {
 	content: '';
 	position: absolute;
-	top: 0;
+	top: calc(50% - 8px);
 	left: 0;
-	width: 100%;
-	height: 100%;
+	width: 2px;
+	height: 16px;
+	border-radius: 0 50% 50% 0;
+	background: #0099ff;
+	
 }
 
 #onlineUsersList li.newMessages::after {
@@ -234,6 +242,7 @@ aside {
 }
 
 section {
+	position: relative;
 	z-index: 1;
 	width: 100%;
 	height: 100%;
@@ -246,34 +255,38 @@ section {
 #chat {
 	flex: 1;
 	overflow: auto;
-	padding: 20px 8px;
-	background-color: #202020;
+	padding: 20px 8px 100px;
+	background: linear-gradient(45deg, #101010, #202020);
 	box-sizing: border-box;
 	/* box-shadow: inset 0 0 20px 5px #0000008d; */
 }
 
 #msgInputContainer {
-	background: #2c2c2c;
-	position: sticky;
+	/* background: #3030304d; */
+	position: absolute;
 	bottom: 0;
-	right: 0;
+	left: 0;
+	width: calc(100% - 4px);
 	display: flex;
-	align-items: flex-start;
-	border-top: 1px solid #003366;
-	border-bottom: 1px solid #003366;
+	align-items: center;
+	border: none;
+	/* border-top: 1px solid #101010;
+	border-bottom: 1px solid #101010; */
 	/* box-shadow: inset 2px 0 5px -1px #0000008d; */
-	padding: 12px;
+	padding: 4px 8px;
+	box-sizing: border-box;
 	gap: 6px;
+	backdrop-filter: blur(4px);
 }
 
 #messageInput {
-	background-color: #202020;
+	background-color: #181818cd;
 	color: #fff;
 	margin: 0;
 	width: 100%;
 	height: 60px;
 	box-sizing: border-box;
-	border: none;
+	border: 1px solid #1010108d;
 	padding: 4px 8px;
 	border-radius: .4rem;
 	resize: none;
@@ -281,9 +294,26 @@ section {
 }
 
 #sendBt {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
+	/* width: 60px; */
+	/* height: 45px; */
+	border-radius:  50%;
+	/* border: 2px solid #101010; */
+	padding: 10px;
+	background: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#sendBt:hover{
+	background: #3030304d;
+}
+
+#sendBt svg{
+	width: 22px;
+	stroke: #505050;
+	stroke-width: 8;
+	stroke-linecap: round;
 }
 
 .blueBt {
@@ -295,30 +325,29 @@ section {
 	flex-direction: row-reverse;
 	margin: 10px 0;
 	position: relative;
+	overflow: visible;
 }
 
 .myMsg::before{
 	content: '';
 	position: absolute;
-	top: 0px;
-	right: 0px;
-	width: 10px;
-	height: 100%;
-	border-radius: 0 0 0 .5rem;
-	background: #202020;
+	left: 100%;
+	top: calc(100% - 8px);
+	width: 8px;
+	height: 8px;
+	background: linear-gradient(45deg, #003366 40%, transparent 40%);
 }
 
 .myMsg::after{
 	content: '';
 	position: absolute;
-	top: -4px;
+	/* top: -4px;
 	right: 6px;
 	width: 10px;
 	height: 10px;
 	border-radius: 0 1rem 0 0;
 	border-right: 4px solid #202020;
-	border-top: 4px solid #202020;
-	/* background: red; */
+	border-top: 4px solid #202020; */
 }
 
 .myMsg div {
@@ -342,25 +371,23 @@ section {
 .friendsMsg::before{
 	content: '';
 	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 10px;
-	height: 100%;
-	border-radius: 0 .5rem 0 0;
-	background: #202020;
+	right: 100%;
+	top: 0;
+	width: 8px;
+	height: 8px;
+	background: linear-gradient(45deg, transparent 60%, #336600 60%);
 }
 
 .friendsMsg::after{
 	content: '';
 	position: absolute;
-	bottom: -4px;
+	/* bottom: -4px;
 	left: 6px;
 	width: 10px;
 	height: 10px;
 	border-radius: 0 0 0 1rem;
 	border-left: 4px solid #202020;
-	border-bottom: 4px solid #202020;
-	/* background: red; */
+	border-bottom: 4px solid #202020; */
 }
 
 .friendsMsg div {
@@ -414,7 +441,7 @@ section {
 	left: 0;
 	width: 100%;
 	box-sizing: border-box;
-	background: #ff3300;
+	background: #dd1212;
 	display: flex;
 	align-items: center;
 	padding: 20px;
@@ -426,7 +453,7 @@ section {
 	flex: 1;
 	text-align: center;
 	font-weight: bolder;
-	color: #000;
+	color: #ddd;
 	font-size: 18px;
 }
 

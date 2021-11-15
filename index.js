@@ -1,3 +1,4 @@
+// import load from './components/load.js'
 var ws
 var pingTimer
 var activeChat = 'all'
@@ -5,7 +6,7 @@ var friends = []
 function connect() {
 	let name = document.querySelector('#nameInput').value.trim()
 	if (name == '')
-		showingMenu('Digite seu nome.')
+		showErrorMsg('Digite seu nome.')
 	else {
 		ws = new WebSocket('wss://razion-apis.herokuapp.com/')
 		// ws = new WebSocket('ws://192.168.100.100:3333/')
@@ -18,6 +19,8 @@ function connect() {
 				command: 'set_name',
 				params: name
 			}
+
+
 			ws.send(JSON.stringify(sendingData))
 		})
 
