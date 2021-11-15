@@ -59,7 +59,7 @@ class Load extends HTMLElement {
 
 		const loading = wrapper.appendChild(document.createElement('img'))
 		loading.id = 'loading'
-		loading.src = '../images/loading.svg'
+		loading.src = 'https://raw.githubusercontent.com/Djalmir/chat/master/images/loading.svg'
 
 		this.setLoading = (isLoading) => {
 			if (isLoading) {
