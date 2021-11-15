@@ -105,7 +105,7 @@ button:active {
 	justify-content: flex-end;
 	padding: 0 4px;
 	box-sizing: border-box;
-	transition: 0.4s;
+	transition: .4s;
 	/* box-shadow: 0 0 5px #0000004d; */
 }
 
@@ -151,7 +151,7 @@ button:active {
 
 #menuSVG {
 	transform-origin: center;
-	transition: 0.4s;
+	transition: 0.8s;
 	stroke: #bdbdbd;
 }
 
@@ -179,10 +179,10 @@ aside {
 	width: 90%;
 	max-width: 300px;
 	height: 100%;
-	padding: 43px 0 0;
+	padding: 40px 0 0;
 	box-sizing: border-box;
 	z-index: 4;
-	transition: .4s;
+	transition: .2s;
 	user-select: none;
 	border-right: 1px solid #101010 !important;
 }
@@ -256,7 +256,7 @@ aside {
 	background: #0000008d;
 	z-index: 3;
 	opacity: 0;
-	transition: opacity .4s;
+	transition: opacity .2s;
 	display: block;
 }
 

@@ -219,6 +219,7 @@ function showMenu() {
 		document.querySelector('#menuSVG').style.stroke = '#7d7d7d'
 		aside.style.left = '0'
 
+		// document.addEventListener('transitionend', btToArrow)
 		setTimeout(() => {
 			let animationElements = Array.from(document.getElementsByClassName('showAnimation'))
 			animationElements.map((element) => {
@@ -234,6 +235,7 @@ function showMenu() {
 		document.querySelector('#menuSVG').style.stroke = '#bdbdbd'
 		aside.style.left = '-310px'
 
+		// document.addEventListener('transitionend', arrowToBt)
 		let animationElements = Array.from(document.getElementsByClassName('hideAnimation'))
 		animationElements.map((element) => {
 			element.beginElement()
@@ -241,6 +243,24 @@ function showMenu() {
 		document.getElementById('menuSVG').style.transform = "rotateZ(0deg)"
 	}
 }
+
+// function btToArrow() {
+// 	document.removeEventListener('transitionend', btToArrow)
+// 	let animationElements = Array.from(document.getElementsByClassName('showAnimation'))
+// 	animationElements.map((element) => {
+// 		element.beginElement()
+// 	})
+// 	document.getElementById('menuSVG').style.transform = "rotateZ(180deg)"
+// }
+
+// function arrowToBt() {
+// 	document.removeEventListener('transitionend', arrowToBt)
+// 	let animationElements = Array.from(document.getElementsByClassName('hideAnimation'))
+// 	animationElements.map((element) => {
+// 		element.beginElement()
+// 	})
+// 	document.getElementById('menuSVG').style.transform = "rotateZ(0deg)"
+// }
 
 function removeShadow() {
 	shadow.removeEventListener('transitionend', removeShadow)
