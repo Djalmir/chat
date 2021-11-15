@@ -3,6 +3,7 @@ var pingTimer
 var activeChat = 'all'
 var friends = []
 var load = document.querySelector('#app-load')
+var errorMsg = document.querySelector('#error-msgs')
 
 function loginInputKeyPress(e) {
 	if (e.key == 'Enter')
@@ -12,7 +13,7 @@ function loginInputKeyPress(e) {
 function connect() {
 	let name = document.querySelector('#nameInput').value.trim()
 	if (name == '')
-		showErrorMsg('Digite seu nome.')
+		errorMsg.show('Digite seu nome.')
 	else {
 		load.setLoading(true)
 		ws = new WebSocket('wss://razion-apis.herokuapp.com/')
@@ -36,7 +37,7 @@ function connect() {
 			data = JSON.parse(data)
 			if (data.type == 'success') {
 				if (data.success == 'login') {
-					closeErrorMsg()
+					errorMsg.closeAll()
 					document.querySelector('#login').style.display = 'none'
 					document.querySelector('#chatContainer').style.display = 'flex'
 
@@ -53,7 +54,7 @@ function connect() {
 			}
 			else if (data.type == 'error') {
 				load.setLoading(false)
-				showErrorMsg(data.error)
+				errorMsg.show(data.error)
 			}
 			else if (data.type == 'command')
 				executeCode(data)
@@ -111,20 +112,20 @@ function connect() {
 
 		ws.addEventListener('close', () => {
 			console.error('Sua conexão foi finalizada.')
-			showErrorMsg('Sua conexão foi finalizada.')
+			errorMsg.show('Sua conexão foi finalizada.')
 		})
 	}
 }
 
-function showErrorMsg(error) {
-	document.querySelector('#errorMsg #errorMsgText').innerText = error
-	document.querySelector('#errorMsg').style.top = '0'
-}
+// function errorMsg.show(error) {
+// 	document.querySelector('#errorMsg #errorMsgText').innerText = error
+// 	document.querySelector('#errorMsg').style.top = '0'
+// }
 
-function closeErrorMsg() {
-	document.querySelector('#errorMsg #errorMsgText').innerText = ''
-	document.querySelector('#errorMsg').style.top = '-100px'
-}
+// function closeErrorMsg() {
+// 	document.querySelector('#errorMsg #errorMsgText').innerText = ''
+// 	document.querySelector('#errorMsg').style.top = '-100px'
+// }
 
 function sendMessage(e) {
 	let input = document.querySelector('#messageInput')
@@ -314,3 +315,8 @@ async function notificationMain() {
 }
 
 notificationMain()
+
+// errorMsg.show('teste um')
+// errorMsg.show('mais um teste. Ops.. teste 2')
+// errorMsg.show('Lorem ipsum dolor sit am.. Ou seria teste 3?')
+// errorMsg.show('só mais um')

@@ -11,16 +11,6 @@
 	</head>
 
 	<body>
-		<div id="errorMsg">
-			<span id="errorMsgText">Erros aqui</span>
-			<button id="closeErrorBtn" onclick="closeErrorMsg()">
-				<svg viewBox="0 0 20 20">
-					<line x1="5" y1="5" x2="15" y2="15" stroke="white" stroke-width="4" stroke-linecap="round" />
-					<line x1="5" y1="15" x2="15" y2="5" stroke="white" stroke-width="4" stroke-linecap="round" />
-				</svg>
-			</button>
-		</div>
-
 		<div id="login">
 			<div id="loginForm" autocomplete="off">
 				<input type="text" id="nameInput" placeholder="Informe seu nome" onkeypress="loginInputKeyPress(event)" autocomplete="off">
@@ -80,9 +70,11 @@
 			</section>
 		</div>
 
-		<app-load id="app-load"/>
+		<error-msgs id="error-msgs"></error-msgs>
+		<app-load id="app-load"></app-load>
 
 		<script src="./components/load.js"></script>
+		<script src="./components/errorMsgs.js"></script>
 		<script src="index.js"></script>
 	</body>
 

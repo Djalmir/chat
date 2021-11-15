@@ -460,39 +460,6 @@ section {
 	font-size: 16px;
 }
 
-#errorMsg {
-	position: fixed;
-	top: -100px;
-	left: 0;
-	width: 100%;
-	box-sizing: border-box;
-	background: #dd1212;
-	display: flex;
-	align-items: center;
-	padding: 20px;
-	transition: .2s;
-	z-index: 3;
-}
-
-#errorMsgText {
-	flex: 1;
-	text-align: center;
-	font-weight: bolder;
-	color: #ddd;
-	font-size: 18px;
-}
-
-#closeErrorBtn {
-	width: 32px;
-	height: 32px;
-	border-radius: 50%;
-	background: radial-gradient(#0000008d, transparent 60%);
-	color: #bdbdbd;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-}
-
 @media (min-width: 800px) {
 	#menuBtContainer {
 		width: 300px!important;
