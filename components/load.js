@@ -61,7 +61,7 @@ class Load extends HTMLElement {
 		loading.id = 'loading'
 		// loading.src = 'https://raw.githubusercontent.com/Djalmir/chat/master/images/loading.svg'
 		if(location.href.startsWith('https://djalmir.github.io/'))
-			loading.src = './images/loading.svg'
+			loading.src = '.chat/images/loading.svg'
 		else
 		loading.src = '../images/loading.svg'
 
