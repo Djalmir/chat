@@ -48,7 +48,7 @@ self.addEventListener('push', function (event) {
 const showLocalNotification = (title, body, swRegistration) => {
 	const options = {
 		body,
-		vibrate: [300, 100, 300, 100, 200, 50, 100, 100, 500],
+		vibrate: [250, 100, 500],
 		icon: 'https://avatars.githubusercontent.com/u/54116932?v=4',
 		image: 'https://media-exp1.licdn.com/dms/image/C5616AQGDXhHSWXJPAA/profile-displaybackgroundimage-shrink_200_800/0/1579622883491?e=1642032000&v=beta&t=yuQoyTImXzn2ov1AV4b_SVWtcl6jumjIAosvr9OB3g8',
 		actions: [
