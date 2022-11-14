@@ -16,7 +16,7 @@ function connect() {
 		errorMsg.show('Digite seu nome.')
 	else {
 		load.setLoading(true)
-		ws = new WebSocket('wss://razion-apis.herokuapp.com/')
+		ws = new WebSocket('wss://razion-apis.onrender.com/')
 		// ws = new WebSocket('ws://192.168.100.100:3333/')
 
 		ws.addEventListener('open', () => {

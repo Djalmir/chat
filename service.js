@@ -10,7 +10,7 @@ const urlB64ToUint8Array = (base64String) => {
 }
 
 const saveSubscription = async subscription => {
-	const response = await fetch('https://razion-apis.herokuapp.com/service-worker/save-subscription', {
+	const response = await fetch('https://razion-apis.onrender.com/service-worker/save-subscription', {
 		// const response = await fetch('http://192.168.100.100:3333/service-worker/save-subscription', {
 		method: 'post',
 		headers: {
