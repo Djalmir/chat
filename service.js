@@ -11,7 +11,7 @@ const urlB64ToUint8Array = (base64String) => {
 
 const saveSubscription = async subscription => {
 	// const response = await fetch('http://192.168.100.100:3333/service-worker/save-subscription', {
-	const response = await fetch('http://vps49327.publiccloud.com.br:3333/service-worker/save-subscription', {
+	const response = await fetch('https://vps49327.publiccloud.com.br/service-worker/save-subscription', {
 		method: 'post',
 		headers: {
 			'Content-Type': 'application/json'
