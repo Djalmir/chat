@@ -10,8 +10,8 @@ const urlB64ToUint8Array = (base64String) => {
 }
 
 const saveSubscription = async subscription => {
-	const response = await fetch('https://razion-apis.onrender.com/service-worker/save-subscription', {
-		// const response = await fetch('http://192.168.100.100:3333/service-worker/save-subscription', {
+	// const response = await fetch('http://192.168.100.100:3333/service-worker/save-subscription', {
+	const response = await fetch('http://vps49327.publiccloud.com.br:3333/service-worker/save-subscription', {
 		method: 'post',
 		headers: {
 			'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ const saveSubscription = async subscription => {
 self.addEventListener('activate', async () => {
 	try {
 		const applicationServerKey = urlB64ToUint8Array('BA-ngyQgPl7vBViMr2WnkQvRyGjqW6170b2c7LltmZf2RHoBAi07noIeZtG43sBCLjplS-DHsdyeTq6tzch9pnU')
-		const options = {applicationServerKey, userVisibleOnly: true}
+		const options = { applicationServerKey, userVisibleOnly: true }
 		const subscription = await self.registration.pushManager.subscribe(options)
 		const response = await saveSubscription(subscription)
 		// console.log('saveSubscription response: ', response)
@@ -90,7 +90,7 @@ self.addEventListener('notificationclick', function (event) {
 			}
 			if (clients.openWindow)
 				return clients.openWindow('https://djalmir.github.io/chat')
-				// return clients.openWindow('http://192.168.100.100:8080')
+			// return clients.openWindow('http://192.168.100.100:8080')
 		}))
 	}
 })
