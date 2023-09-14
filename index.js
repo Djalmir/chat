@@ -17,7 +17,7 @@ function connect() {
 	else {
 		load.setLoading(true)
 		// ws = new WebSocket('ws://192.168.100.100:3333/')
-		ws = new WebSocket('wss://vps49327.publiccloud.com.br/api/')
+		ws = new WebSocket('wss://api.razion.app.br/')
 
 		ws.addEventListener('open', () => {
 			ws.name = name
